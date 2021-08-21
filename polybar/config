@@ -1,0 +1,175 @@
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+;;
+;;	    ____        __      __              
+;;	   / __ \____  / /_  __/ /_  ____ ______
+;;	  / /_/ / __ \/ / / / / __ \/ __ `/ ___/
+;;	 / ____/ /_/ / / /_/ / /_/ / /_/ / /    
+;;	/_/    \____/_/\__, /_.___/\__,_/_/     
+;;	              /____/                    
+;;
+;; Created By Aditya Shakya @adi1090x
+;; Modified By Kaushik Murali @kash296
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[color]
+
+fg = #d5c4a1
+bg = #282828
+
+[bar/main]
+height = 30
+width = 99% 
+offset-y = 0.25%
+offset-x = 0.5%
+bottom = false
+radius = 5.0
+
+border-color = ${color.bg}
+
+wm-restack = bspwm
+enable-ipc = true
+background = ${color.bg}
+foreground = ${color.fg}
+
+;==========================================================
+font-0 = SF Pro Display:style=Regular:pixelsize=12;1
+font-1 = Material Design Icons:style=Regular:pixelsize=12;1
+font-2 = Font Awesome 5 Pro,Font Awesome 5 Pro Regular:style=Regular:pixelsize=12;1
+font-3 = Font Awesome 5 Brands:style=Regular:pixelsize=12;1
+
+;==========================================================
+
+modules-left = bspwm 
+modules-right = wlan backlight battery volume date time
+;==========================================================
+
+
+
+;== Modules ========================================================
+
+[module/bspwm]
+type = internal/bspwm
+
+ws-icon-0 = I;
+ws-icon-1 = II;󰨞
+ws-icon-2 = III;
+ws-icon-3 = IV;
+ws-icon-4 = V;
+ws-icon-5 = VI;󰕼
+ws-icon-6 = VII;
+ws-icon-default =  
+
+label-empty-foreground = ${color.fg}
+label-empty-background = ${color.bg}
+label-focused = %icon%
+label-focused-foreground = #fcea84
+label-focused-padding = 5
+label-occupied = %icon%
+label-occupied-padding = 5
+label-empty = %icon%
+label-empty-padding = 5
+
+[module/battery]
+type = internal/battery
+
+full-at = 99
+battery = BAT0
+adapter = ADP0
+poll-interval = 5
+
+label-charging =%percentage%%
+label-discharging =%percentage%%
+label-full =%percentage%%
+
+format-charging =<animation-charging> <label-charging>  
+format-discharging =<ramp-capacity> <label-discharging>
+format-full =<ramp-capacity> <label-full>
+format-charging-padding = 1
+label-charging-padding = 1
+
+format-discharging-padding = 1
+label-discharging-padding = 1
+
+format-full-padding = 1
+label-full-padding = 1
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+
+animation-charging-framerate = 750
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+format = <ramp><label>
+label = %percentage%%
+
+format-padding = 2
+label-padding = 1
+
+ramp-0 = 󰃞
+ramp-1 = 󰃝
+ramp-2 = 󰃟
+ramp-3 = 󰃠
+
+[module/volume]
+type = internal/alsa
+
+format-volume = <ramp-volume> <label-volume>
+format-muted = <label-muted>
+
+format-volume-padding = 1
+label-volume-padding = 1
+
+format-muted-padding = 1
+label-muted-padding = 1
+
+label-volume =  %percentage%%
+label-muted = 
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-headphones-0 = 
+
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+
+format-connected = <label-connected>
+format-connected-padding = 2
+
+label-connected = 
+
+format-disconnected = <label-disconnected>
+format-disconnected-padding = 2
+
+label-disconnected = 
+
+
+[module/time]
+type = internal/date
+interval = 30
+label =  %time%
+time = %I:%M %p
+label-padding = 2
+time-padding = 1
+
+[module/date]
+type = internal/date
+interval = 30
+label =    %date%   
+date = %a, %d %B
+label-padding = 2S
+date-padding = 1
+
+;== EOF ========================================================
+

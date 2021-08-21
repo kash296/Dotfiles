@@ -1,0 +1,30 @@
+#! /bin/sh
+
+# run the xrandr command if an external monitor is connected to the
+# laptop.  This must be executed before the polybar command, so that
+# polybar can set the two separate bars properly.
+if [ -x $HOME/.local/bin/check_dual_monitor_bspwm ];then
+    check_dual_monitor_bspwm
+	if [ $? == 1 ]; then
+    bspc monitor eDP-1 -d I II III IV V VI VII VIII IX X
+	elif [ $? == 0 ]; then
+	bspc monitor eDP-1 -d I II III IV V
+	bspc monitor HDMI-1 -d VI VII VIII IX X
+	fi		
+fi
+
+sxhkd &
+
+
+bspc config border_width         0
+bspc config window_gap           10
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+feh --bg-scale ~/Pictures/Kratos.jpg
+
+pkill picom; picom --experimental-backends &
+pkill polybar; polybar right &
+
